@@ -12,10 +12,12 @@ from copy import deepcopy
 # sign variable to decide the turn of which player
 sign = 0
 
+#root = Tk()
 
 # Creates an empty board
 global board
 board = [[" " for x in range(3)] for y in range(3)]
+
 
 # Check l(O/X) won the match or not
 # according to the rules of the game
@@ -93,17 +95,38 @@ def get_text_pc(i, j, gb, l1, l2):
 		button[i][j].config(text=board[i][j])
 	x = True
 	if winner(board, "X"):
-		gb.destroy()
+		#gb.destroy()
+		
 		x = False
 		box = messagebox.showinfo("Winner", "Player won the match")
+		l1.grid_forget()
+		l2.grid_forget()
+		resetboard()
+		clearboard()
+		gb.geometry("250x250")
+		backtomenu(gb)
 	elif winner(board, "O"):
-		gb.destroy()
+		#gb.destroy()
 		x = False
-		box = messagebox.showinfo("Winner", "Computer won the match")
+		box = messagebox.showinfo("Winner", "Computer won the match--try again")
+		sign = 0
+		resetboard()
+		clearboard()
+		gameboard_pc(gb, l1, l2)
 	elif(isfull()):
-		gb.destroy()
+		#gb.destroy()
 		x = False
-		box = messagebox.showinfo("Tie Game", "Tie Game")
+		box = messagebox.showinfo("Tie", "The match is a tie--try again")
+		sign = 0
+		resetboard()
+		clearboard()
+		gameboard_pc(gb, l1, l2)
+
+		#l1.grid_forget()
+		#l2.grid_forget()
+		#restart.grid(row=1, column=1)
+		#play()
+
 
         
 	if(x):
@@ -142,32 +165,52 @@ def withpc(game_board):
 	l2.grid(row = 2, column = 1)
 	gameboard_pc(game_board, l1, l2)
 
+def resetboard():
+	for i in range(len(board)):
+		for j in range(len(board[i])):
+			board[i][j] = ' '
+	
+
+def clearboard():
+	for i in range(len(button)):
+		for j in range(len(button[i])):
+			button[i][j].grid_forget()
+
+def backtomenu(game_board):
+	B1 = Button(game_board, text = "Tic Tac Toes", state=DISABLED,
+				activeforeground = 'gray',
+				activebackground = "yellow", bg = "dark gray",
+				fg = "black", width = 50, font = 'blue', bd = 5)
+	B3 = Button(game_board, text = "Exit", command = game_board.quit,
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark green",
+				fg = "white", width = 50, font = 'blue', bd = 5)
+	B1.pack(side = 'top')
+	B3.pack(side = 'top')
 
 
 # main function
 def play():
 	menu = Tk()
 	menu.geometry("250x250")
-	menu.title("Tic Tac Toe")
+	menu.title("Menu")
 	wpc = partial(withpc, menu)
-
-
 	
-	B1 = Button(menu, text = "Single Player", command = wpc,
+	
+	B1 = Button(menu, text = "Tic Tac Toes", command = wpc,
 				activeforeground = 'gray',
-				activebackground = "blue", bg = "dark gray",
-				fg = "yellow", width = 500, font = 'dark blue', bd = 5)
+				activebackground = "yellow", bg = "dark gray",
+				fg = "black", width = 500, font = 'blue', bd = 5)
 	
 
 	
-	B3 = Button(menu, text = "Exit", command = menu.quit, activeforeground = 'red',
-				activebackground = "yellow", bg = "red", fg = "yellow",
-				width = 500, font = 'summer', bd = 5)
+	B3 = Button(menu, text = "Exit", command = menu.quit,
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark green",
+				fg = "white", width = 500, font = 'blue', bd = 5)
     
     	
-	Restart = Button(menu, text = "Exit", command = play, activeforeground = 'red',
-				activebackground = "yellow", bg = "red", fg = "yellow",
-				width = 500, font = 'summer', bd = 5)
+
 
 	B1.pack(side = 'top')
 
@@ -177,5 +220,4 @@ def play():
 # Call main function
 if __name__ == '__main__':
 	play()
-	if __name__ == '__main__':
-	play()
+
