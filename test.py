@@ -14,63 +14,7 @@ import tkinter.messagebox
 import tkinter
 from tkinter import *
 
-#hannah dsifcvnioh
 
-bean = Tk()
-bean.title("A Simple Love Story <3")
-bean.geometry("600x400")
-
-#script array
-firstscript = ["Welcome to the love story.", "It begins on a hill with two lovers, Alex and Sam.", "The summer air is warm.", "They are wrapped in each others arms.", "All is right in their world.", "Suddenly, the ground begins to shake.", "A ferocious dragon races up the hill.", "It takes Alex within its claws and soars into the setting sky.", "Player, you will continue this story as Sam.", "You must travel to the dragon's den, find Alex, and rescue your lover.", "Do not be afraid of the challenges along the way.", "With them, you will grow."]
-count=0
-
-global dialogue
-dialogue = Label(bean, text = "Hello there, player.")
-
-global nex
-nex= Button(bean, text="NEXT", command = lambda:button_click(firstscript, dialogue))
-
-#displays first script
-def introscript():
-    dialogue.pack()
-    nex.pack()
-    
-def backtomenu(game_board):
-	bean.title("Menu")
-
-	B1 = Button(game_board, text = "Tic Tac Toes",
-				activeforeground = 'gray', command = 
-				activebackground = "yellow", bg = "dark gray",
-				fg = "black", width = 50, font = 'blue', bd = 5)
-	if count > 0:
-		B1.configure(state = DISABLED)
-	B3 = Button(game_board, text = "Exit", command = game_board.quit,
-				activeforeground = 'green',
-				activebackground = "yellow", bg = "dark green",
-				fg = "white", width = 50, font = 'blue', bd = 5)
-	C1 = Button(game_board, text = "Cooking", command = lambda:cpc(game_board),
-				activeforeground = 'green',
-				activebackground = "yellow", bg = "dark red",
-				fg = "white", width = 500, font = 'blue', bd = 5)
-	B1.pack(side = 'top')
-	C1.pack(side = 'top')
-	B3.pack(side = 'top')
-
-#loops through array when button is clicked to change dialogue
-def button_click(array, label):
-    global count
-    if count < len(array):
-        label.configure(text = array[count])
-        count+=1
-    else:
-        count = 0
-        nex.configure(command = lambda:backtomenu(bean))
-
-
-
-introscript()
-bean.mainloop()
-# hannah inkjh
 
 # sign variable to decide the turn of which player
 sign = 0
@@ -299,11 +243,67 @@ isdone = FALSE
 def done():
 	isdone = TRUE
 
+#hannah dsifcvnioh
 
+bean = Tk()
+bean.title("A Simple Love Story <3")
+bean.geometry("600x400")
+
+#script array
+firstscript = ["Welcome to the love story.", "It begins on a hill with two lovers, Alex and Sam.", "The summer air is warm.", "They are wrapped in each others arms.", "All is right in their world.", "Suddenly, the ground begins to shake.", "A ferocious dragon races up the hill.", "It takes Alex within its claws and soars into the setting sky.", "Player, you will continue this story as Sam.", "You must travel to the dragon's den, find Alex, and rescue your lover.", "Do not be afraid of the challenges along the way.", "With them, you will grow."]
+count=0
+
+global dialogue
+dialogue = Label(bean, text = "Hello there, player.")
+
+global nex
+nex= Button(bean, text="NEXT", command = lambda:button_click(firstscript, dialogue))
+
+#displays first script
+def introscript():
+    dialogue.pack()
+    nex.pack()
+    
+def backtomenu(game_board):
+	bean.title("Menu")
+
+	B1 = Button(game_board, text = "Tic Tac Toes",
+				activeforeground = 'gray',
+				activebackground = "yellow", bg = "dark gray",
+				fg = "black", width = 50, font = 'blue', bd = 5)
+	if count > 0:
+		B1.configure(state = DISABLED)
+	B3 = Button(game_board, text = "Exit", command = game_board.quit,
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark green",
+				fg = "white", width = 50, font = 'blue', bd = 5)
+	C1 = Button(game_board, text = "Cooking", command = lambda:cpc(game_board),
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark red",
+				fg = "white", width = 500, font = 'blue', bd = 5)
+	B1.pack(side = 'top')
+	C1.pack(side = 'top')
+	B3.pack(side = 'top')
+
+#loops through array when button is clicked to change dialogue
+def button_click(array, label):
+    global count
+    if count < len(array):
+        label.configure(text = array[count])
+        count+=1
+    else:
+        count = 0
+        nex.configure(command = lambda:backtomenu(bean))
+
+
+
+introscript()
+bean.mainloop()
+# hannah inkjh
 	
 
-def cooking():
-	lol
+#def cooking():
+#	lol
 
 
 # main function
@@ -339,7 +339,7 @@ def play():
 global levels
 levels = 0
 
-# Call main function
+#Call main function
 #if __name__ == '__main__':
 #	play()
 
