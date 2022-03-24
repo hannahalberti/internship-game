@@ -306,6 +306,7 @@ def introscript():
     
 def backtomenu(game_board):
 	bean.title("Menu")
+	nex.pack_forget
 	wpc = partial(withpc, bean)
 	B1 = Button(game_board, text = "Tic Tac Toes", command = wpc,
 				activeforeground = 'gray',
