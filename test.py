@@ -2,6 +2,7 @@
 # using tkinter
 
 # importing all necessary libraries
+from lib2to3.pgen2.token import RARROW
 import random
 import tkinter
 from tkinter import *
@@ -239,6 +240,10 @@ def cpc(game_board):
 	Cooking.title("Cooking")
 	#tkinter.messagebox.showinfo("Instructions", "Press the DONE button when the color bar is green for the max food points.")
 	done = FALSE
+	global ra
+	ra = [0, 0, 0, 0, 0, 0]
+	global ca
+	ca = [0, 0, 0, 0, 0, 0]
 	pots1 = Label(Cooking, bg = "dark red", width = 15)
 	pots2 = Label(Cooking, bg = "dark red", width = 15)
 	pots3 = Label(Cooking, bg = "dark red", width = 15)
@@ -314,16 +319,22 @@ def newrecipe():
 		recipe6.configure(bg = "tan")
 
 def cooking(buttt, num):
+	ca[num]
 	if cc[num] == 0:
 		buttt.configure(bg = "tan")
+		ca[num] = 0
 	if cc[num] == 1:
 		buttt.configure(bg = "yellow")
+		ca[num] = 1
 	if cc[num] == 2:
 		buttt.configure(bg = "dark green")
+		ca[num] = 2
 	if cc[num] == 3:
 		buttt.configure(bg = "red")
+		ca[num] = 3
 	if cc[num] == 4:
 		buttt.configure(bg = "brown")
+		ca[num] = 4
 	if cc[num] == 5:
 		buttt.configure(bg = "tan")
 	cc[num] = cc[num] + 1
