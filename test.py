@@ -14,7 +14,7 @@ import tkinter.messagebox
 import tkinter
 from tkinter import *
 
-
+#new
 
 # sign variable to decide the turn of which player
 sign = 0
@@ -86,6 +86,27 @@ def pc():
 			move = random.randint(0, len(edge)-1)
 			return edge[move]
 
+"""def backtomenu(game_board):
+	bean.title("Menu")
+	nex.pack_forget
+	B1 = Button(game_board, text = "Tic Tac Toes", 
+				activeforeground = 'gray',
+				activebackground = "yellow", bg = "dark gray",
+				fg = "black", width = 50, font = 'blue', bd = 5)
+	if count > 0:
+		B1.configure(state = DISABLED)
+	B3 = Button(game_board, text = "Exit", command = game_board.quit,
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark green",
+				fg = "white", width = 50, font = 'blue', bd = 5)
+	C1 = Button(game_board, text = "Cooking", command = lambda:cpc(game_board),
+				activeforeground = 'green',
+				activebackground = "yellow", bg = "dark red",
+				fg = "white", width = 50, font = 'blue', bd = 5)
+	B1.pack(side = 'top')
+	C1.pack(side = 'top')
+	B3.pack(side = 'top')"""
+
 # Configure text on button while playing with system
 def get_text_pc(i, j, gb, l1, l2):
 	global sign
@@ -113,6 +134,9 @@ def get_text_pc(i, j, gb, l1, l2):
 		clearboard()
 		levels = 1
 		gb.geometry("250x250")
+		sd = Label(gb, text = "sfgvsf")
+		#sd.pack()
+		#backtomenu(bean)
 		backtomenu(gb)
 	elif winner(board, "O"):
 		#gb.destroy()
@@ -185,9 +209,9 @@ def clearboard():
 		for j in range(len(button[i])):
 			button[i][j].grid_forget()
 
-def backtomenu(game_board):
+""""def backtomenu(game_board):
 	bean.title("Menu")
-
+	nex.pack_forget
 	B1 = Button(game_board, text = "Tic Tac Toes", 
 				activeforeground = 'gray',
 				activebackground = "yellow", bg = "dark gray",
@@ -204,7 +228,7 @@ def backtomenu(game_board):
 				fg = "white", width = 50, font = 'blue', bd = 5)
 	B1.pack(side = 'top')
 	C1.pack(side = 'top')
-	B3.pack(side = 'top')
+	B3.pack(side = 'top')"""
 
 
 
@@ -215,27 +239,63 @@ def cpc(game_board):
 	Cooking.title("Cooking")
 	#tkinter.messagebox.showinfo("Instructions", "Press the DONE button when the color bar is green for the max food points.")
 	done = FALSE
-
-	l1 = Button(Cooking, text="cook", command = lambda:plate(Cooking), width=10)
-	DONE = Button(Cooking, text="DONE", command = done, width=10)
+	pots1 = Label(Cooking, bg = "dark red", width = 15)
+	pots2 = Label(Cooking, bg = "dark red", width = 15)
+	pots3 = Label(Cooking, bg = "dark red", width = 15)
+	pots4 = Label(Cooking, bg = "dark red", width = 15)
+	pots5 = Label(Cooking, bg = "dark red", width = 15)
+	pots6 = Label(Cooking, bg = "dark red", width = 15)
+	global recipe1, recipe2, recipe3, recipe4, recipe5, recipe6
+	recipe1 = Label(Cooking, bg = "dark red", width = 15)
+	recipe2 = Label(Cooking, bg = "dark red", width = 15)
+	recipe3 = Label(Cooking, bg = "dark red", width = 15)
+	recipe4 = Label(Cooking, bg = "dark red", width = 15)
+	recipe5 = Label(Cooking, bg = "dark red", width = 15)
+	recipe6 = Label(Cooking, bg = "dark red", width = 15)
 	global chicken 
 	chicken = Label(Cooking, bg = "dark red", width = 35)
-	chicken.grid()
-	l1.grid(sticky = "w", padx = 10)
+	l1 = Button(Cooking, text="cook", command = newrecipe, width=10)
+	DONE = Button(Cooking, text="DONE", command = done, width=10)
+	arrow1 = Button(Cooking, text="=>", command = lambda:cooking(pots1, 0), width=5, height=1)
+	arrow2 = Button(Cooking, text="=>", command = lambda:cooking(pots2, 1), width=5, height=1)
+	arrow3 = Button(Cooking, text="=>", command = lambda:cooking(pots3, 2), width=5, height=1)
+	arrow4 = Button(Cooking, text="=>", command = lambda:cooking(pots4, 3), width=5, height=1)
+	arrow5 = Button(Cooking, text="=>", command = lambda:cooking(pots5, 4), width=5, height=1)
+	arrow6 = Button(Cooking, text="=>", command = lambda:cooking(pots6, 5), width=5, height=1)
+	global numdone
+	numdone = 0 
+	rec = Label(Cooking, text = str(numdone) + "/3")
+	#chicken.grid(row = 0, column = 0)
+	l1.grid(sticky = "w", padx = 10, row = 1, column = 0)
+	pots1.grid(sticky = "w", row = 2, column = 0)
+	pots2.grid(sticky = "w", row = 3, column = 0)
+	pots3.grid(sticky = "w", row = 4, column = 0)
+	pots4.grid(sticky = "w", row = 5, column = 0)
+	pots5.grid(sticky = "w", row = 6, column = 0)
+	pots6.grid(sticky = "w", row = 7, column = 0)
+	arrow1.grid(row = 2, column = 1)
+	arrow2.grid(row = 3, column = 1)
+	arrow3.grid(row = 4, column = 1)
+	arrow4.grid(row = 5, column = 1)
+	arrow5.grid(row = 6, column = 1)
+	arrow6.grid(row = 7, column = 1)
+	rec.grid(row = 8, column = 1)
+	recipe1.grid(sticky = "w", row = 2, column = 2)
+	recipe2.grid(sticky = "w", row = 3, column = 2)
+	recipe3.grid(sticky = "w", row = 4, column = 2)
+	recipe4.grid(sticky = "w", row = 5, column = 2)
+	recipe5.grid(sticky = "w", row = 6, column = 2)
+	recipe6.grid(sticky = "w", row = 7, column = 2)
 
-def plate(Cooking):
-	global recipe
-	recipe = []
-	for i in range(3):
-		m = 3+i
-		recipe.append(i)
-		recipe[i] = []
-		for j in range(2):
-			n = j
-			recipe[i].append(j)
-			recipe[i][j] = Button(Cooking, bd=5, height=4, width=8)
-			recipe[i][j].grid(row=m, column=n)
 
+global cc
+cc = [0, 0, 0, 0, 0, 0] 
+
+global r
+r = [0, 0, 0, 0, 0, 0] 
+
+global numrep
+numrep = 0
 
 global isdone
 isdone = FALSE
@@ -244,10 +304,30 @@ def done():
 	isdone = TRUE
 
 
-	
+def newrecipe():
+	if numrep == 0:
+		recipe1.configure(bg = "tan")
+		recipe2.configure(bg = "yellow")
+		recipe3.configure(bg = "dark green")
+		recipe4.configure(bg = "red")
+		recipe5.configure(bg = "brown")
+		recipe6.configure(bg = "tan")
 
-#def cooking():
-#	lol
+def cooking(buttt, num):
+	if cc[num] == 0:
+		buttt.configure(bg = "tan")
+	if cc[num] == 1:
+		buttt.configure(bg = "yellow")
+	if cc[num] == 2:
+		buttt.configure(bg = "dark green")
+	if cc[num] == 3:
+		buttt.configure(bg = "red")
+	if cc[num] == 4:
+		buttt.configure(bg = "brown")
+	if cc[num] == 5:
+		buttt.configure(bg = "tan")
+	cc[num] = cc[num] + 1
+
 
 
 # main function
@@ -284,7 +364,7 @@ global levels
 levels = 0
 
 #hannah dsifcvnioh
-
+global bean
 bean = Tk()
 bean.title("A Simple Love Story <3")
 bean.geometry("600x400")
@@ -306,7 +386,8 @@ def introscript():
     
 def backtomenu(game_board):
 	bean.title("Menu")
-	nex.pack_forget
+	nex.pack_forget()
+	dialogue.pack_forget()
 	wpc = partial(withpc, bean)
 	B1 = Button(game_board, text = "Tic Tac Toes", command = wpc,
 				activeforeground = 'gray',
